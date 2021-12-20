@@ -38,6 +38,8 @@ public class User {
 	
 	private Double pointTotal;
 	
+	// add List of chores and list of rewards tied to user?? \\ 
+	
 	public User() {}
 	
 	public User(String name, String password) {

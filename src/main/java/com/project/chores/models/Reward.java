@@ -30,7 +30,7 @@ public class Reward {
 	@Min(value=1)
 	private Double cost;
 	
-	private Boolean redeemed;
+	private Boolean redeemed;  // ManyToMany Relationship vs multiple OneToMany?
 	
 	public Reward() {}
 	

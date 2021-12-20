@@ -28,7 +28,7 @@ public class Chore {
 	@Min(value=1)
 	private Double value;
 	
-	private Boolean completed;
+	private Boolean completed;  // ManyToMany Relationship vs multiple OneToMany?
 	
 	
 	public Chore() {}
