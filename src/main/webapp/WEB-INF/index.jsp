@@ -20,7 +20,22 @@
 <body>
 	<div class="container mt-5">
 	
-	
+		<div class="p-5">
+				<h3>Login</h3>
+	    		<form:form action="/login" method="post" modelAttribute="newLogin">
+	        	<div class="form-group">
+	           		<label>Name:</label>
+	            	<form:input path="name" class="form-control" />
+	            	<form:errors path="name" class="text-danger" />
+	        	</div>
+	        	<div class="form-group">
+	            	<label>Password:</label>
+	            	<form:password path="password" class="form-control" />
+	            	<form:errors path="password" class="text-danger" />
+		        </div>
+	    		    <input type="submit" value="Login" class="btn btn-success mt-2" />
+	    		</form:form>
+			</div>	
 	
 	</div>
 </body>
