@@ -28,6 +28,7 @@ public class ChoreController {
 	@Autowired
 	ChoreService choreService;
 	
+	//     Parent Mapping     \\
 
 	@GetMapping("/admin/createuser")
 	public String createUser(Model model) {
@@ -75,4 +76,19 @@ public class ChoreController {
 		model.addAttribute("rewards", rewards);
 		return "editChoreList.jsp";
 	}
+	
+	//     Child Mapping     \\
+	
+	@GetMapping("/chore/complete")
+	public String completeChore(HttpSession session, Model model) {
+		if(session.getAttribute("user_id") == null) {
+			return "redirect:/";
+			}
+		List<Chore> chores = choreService.allChores();
+		List<Reward> rewards = choreService.allRewards();
+		model.addAttribute("chores", chores);
+		model.addAttribute("rewards", rewards);
+		return "childCompleteChore.jsp";
+	}
+	
 }		

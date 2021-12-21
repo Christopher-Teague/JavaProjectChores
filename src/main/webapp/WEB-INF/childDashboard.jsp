@@ -27,7 +27,7 @@
 				
 				</div>
 				<div class="d-flex  justify-content-end">
-			   		<a href="/redeemPage" class="btn btn-primary ">Redeem Points</a>				
+			   		<a href="/chore/complete" class="btn btn-primary ">Redeem Points</a>				
 			   		<a href="/logout" class="btn btn-secondary me-3">Logout</a>
 				</div>   		
 	   		</div>
