@@ -37,10 +37,13 @@
             	<form:password path="confirm" class="form-control" />
             	<form:errors path="confirm" class="text-danger" />
         	</div>
+
         	<div class="form-group">
-            	<label>For Parents - Email:</label>
-            	<form:input path="email" class="form-control" />
-            	<form:errors path="email" class="text-danger" />
+            	<label>Parent or Child?</label>
+            	<form:select path="isParent" class="form-control">
+            		<option value="false">Child</option>
+            		<option value="true">Parent</option>
+				</form:select>        	
         	</div>
         		<input type="submit" value="Register" class="btn btn-primary mt-2" />
     		</form:form>	

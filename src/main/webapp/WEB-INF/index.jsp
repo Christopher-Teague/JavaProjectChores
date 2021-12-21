@@ -24,9 +24,9 @@
 				<h3>Login</h3>
 	    		<form:form action="/login" method="post" modelAttribute="newLogin">
 	        	<div class="form-group">
-	           		<label>Name:</label>
-	            	<form:input path="name" class="form-control" />
-	            	<form:errors path="name" class="text-danger" />
+	           		<label>User Name:</label>
+	            	<form:input path="userName" class="form-control" />
+	            	<form:errors path="userName" class="text-danger" />
 	        	</div>
 	        	<div class="form-group">
 	            	<label>Password:</label>
