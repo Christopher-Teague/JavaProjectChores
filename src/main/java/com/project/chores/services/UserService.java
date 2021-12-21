@@ -3,7 +3,6 @@ package com.project.chores.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -57,8 +56,8 @@ public class UserService {
             return null;
         }
         User user = potentialUser.get();
-        if(newLogin.getPassword() != user.getPassword()) {
-            result.rejectValue("password", "Matches", "Invalid Password!");
+        if(!newLogin.getPassword().equals(user.getPassword())) {
+            result.rejectValue("password", "Matches", "Password entered is not correct!");
         }
         if(result.hasErrors()) {
             return null;

@@ -31,9 +31,9 @@
 			   		<a href="/logout" class="btn btn-secondary me-3">Logout</a>
 				</div>   		
 	   		</div>
-	   		<div>
+	   		<div class="mt-3">
 	   			<h3>Available Chores</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>
@@ -45,7 +45,7 @@
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
 						<tr>
-		   					<td>${chore.name}</td>			    					  					
+		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
 		   					<td>action</td>		    					  					
 					  	</tr>
@@ -55,7 +55,7 @@
 	   		</div>
 	   		<div>
 	   			<h3>Chores being done</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>

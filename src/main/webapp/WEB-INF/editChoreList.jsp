@@ -24,13 +24,13 @@
 		   		<h1>Edit Available Lists</h1>			
 			</div>
 			<div class="d-flex  justify-content-end">
-		   		<a href="/createChore" class="btn btn-secondary me-3">Create Chore/Reward</a>
+		   		<a href="/chore/new" class="btn btn-secondary me-3">Create Chore/Reward</a>
 		   		<a href="/parentDashboard" class="btn btn-primary">Dashboard</a>				
 			</div>   		
    		</div>
-		<div>	   		
+		<div class="mt-3">	   		
    			<h3>Edit Current Chore List</h3>
-	   		<table class="table table-primary table-striped mt-5">
+	   		<table class="table table-primary table-striped">
 				<thead>
 				    <tr>				      
 				      <th class="col-4">Chore</th>
@@ -43,7 +43,7 @@
 				<tbody>
 				  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
 					<tr>
-	   					<td>${chore.name}</td>			    					  					
+	   					<td>${chore.choreName}</td>			    					  					
 	   					<td>${chore.value}</td>	
 	   					<td>Delete Button</td>	    					  					
 				  	</tr>
@@ -52,9 +52,9 @@
 			</table> 
 			Drop Down to add chores
    		</div>
-		<div>	   		
+		<div class="mt-3">	   		
    			<h3>Edit Current Rewards List</h3>
-	   		<table class="table table-primary table-striped mt-5">
+	   		<table class="table table-primary table-striped">
 				<thead>
 				    <tr>				      
 				      <th class="col-4">Reward</th>
@@ -65,10 +65,10 @@
 					</tr>
 				</thead>
 				<tbody>
-				  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+				  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
 					<tr>
-	   					<td>${chore.name}</td>			    					  					
-	   					<td>${chore.value}</td>	
+	   					<td>${reward.rewardName}</td>			    					  					
+	   					<td>${reward.cost}</td>	
 	   					<td>delete button</td>	
 	   					    					  					
 				  	</tr>

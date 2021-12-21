@@ -31,9 +31,9 @@
 			   		<a href="/logout" class="btn btn-secondary me-3">Logout</a>
 				</div>   		
 	   		</div>
-	   		<div>
+	   		<div class="mt-3">
 	   			<h3>Redeemed Rewards</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Reward</th>
@@ -57,7 +57,7 @@
 	   		</div>
 	   		<div>
 	   			<h3>Completed Chores</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>
@@ -82,7 +82,7 @@
 	   		</div>
 	   		<div>	   		
 	   			<h3>Chores to be done</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>
@@ -94,7 +94,7 @@
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
 						<tr>
-		   					<td>${chore.name}</td>			    					  					
+		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
 		   					    					  					
 					  	</tr>
@@ -103,8 +103,8 @@
 				</table> 
 	   		</div>
 			<div class="d-flex">
-			<a href="" class="btn btn-primary btn-lg">Create new Chore/Reward</a>
-			<a href="" class="btn btn-secondary btn-lg">Edit current Chore/Reward List</a>
+			<a href="/chore/new" class="btn btn-primary btn-lg">Create new Chore/Reward</a>
+			<a href="/edit/choreList" class="btn btn-secondary btn-lg">Edit current Chore/Reward List</a>
 			</div>
 	</div>
 </body>
