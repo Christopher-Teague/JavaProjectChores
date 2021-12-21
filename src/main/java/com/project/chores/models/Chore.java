@@ -3,9 +3,13 @@ package com.project.chores.models;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.Min;
@@ -14,7 +18,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+@Entity
 public class Chore {
 	
 	@Id
@@ -31,7 +35,9 @@ public class Chore {
 	
 	private Boolean completed;  // ManyToMany Relationship vs multiple OneToMany?
 	
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 	
 	public Chore() {}
 	
@@ -94,6 +100,14 @@ public class Chore {
 
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getCreatedAt() {

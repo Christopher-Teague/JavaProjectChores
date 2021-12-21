@@ -47,7 +47,7 @@ public class HomeController {
 	    userServ.register(newUser, result);
 	    if(result.hasErrors()) {
 	        model.addAttribute("newLogin", new LoginUser());
-	        return "index.jsp";
+	        return "createUser.jsp";
 	    } 
 	    session.setAttribute("user_id", newUser.getId());
 	    session.setAttribute("userName", newUser.getUserName());
@@ -76,8 +76,9 @@ public class HomeController {
 		List<Reward> rewards = rewardService.allRewards();
 		model.addAttribute("chores", chores);
 		model.addAttribute("rewards", rewards);
+		
 		return "childDashboard.jsp";
-	}
+		}
 
 	@GetMapping("/logout") 
 		public String logout(HttpSession session) {

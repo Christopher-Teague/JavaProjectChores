@@ -32,8 +32,8 @@ public class UserService {
 	}
     
     public User register(User newUser, BindingResult result) {
-        if(userRepo.findByEmail(newUser.getEmail()).isPresent()) {
-            result.rejectValue("email", "Unique", "This email is already in use!");
+        if(userRepo.findByUserName(newUser.getUserName()).isPresent()) {
+            result.rejectValue("userName", "Unique", "This user name is already in use!");
         }
         if(!newUser.getPassword().equals(newUser.getConfirm())) {
             result.rejectValue("confirm", "Matches", "The Confirm Password must match Password!");
@@ -41,8 +41,8 @@ public class UserService {
         if(result.hasErrors()) {
             return null;
         } else {
-            String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
-            newUser.setPassword(hashed);
+//            String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+//            newUser.setPassword(hashed);
             return userRepo.save(newUser);
         }
     }
@@ -51,13 +51,13 @@ public class UserService {
         if(result.hasErrors()) {
             return null;
         }
-        Optional<User> potentialUser = userRepo.findByEmail(newLogin.getEmail());
+        Optional<User> potentialUser = userRepo.findByUserName(newLogin.getUserName());
         if(!potentialUser.isPresent()) {
-            result.rejectValue("email", "Unique", "Unknown email!");
+            result.rejectValue("userName", "Unique", "Unknown user name!");
             return null;
         }
         User user = potentialUser.get();
-        if(!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+        if(newLogin.getPassword() != user.getPassword()) {
             result.rejectValue("password", "Matches", "Invalid Password!");
         }
         if(result.hasErrors()) {

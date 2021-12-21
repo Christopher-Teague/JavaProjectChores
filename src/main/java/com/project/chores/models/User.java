@@ -1,16 +1,18 @@
 package com.project.chores.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,7 +26,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message="Name is required!")
+	@NotNull(message="User name is required!")
 	@Size(min=2, message="name must be at least 2 characters long")
 	private String userName;   
 
@@ -32,27 +34,31 @@ public class User {
 	@Size(min=2, message="password must be at least 2 characters long")
 	private String password;   
 	
-    @NotEmpty(message="Email is required!")
-    @Email(message="Please enter a valid email!")
-    private String email;
-   
-	
 	@Transient
-    @NotEmpty(message="Confirm Password is required!")
-    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
-    private String confirm;
-	
+	@NotEmpty(message="Confirm Password is required!")
+	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+	private String confirm;
+  
 	private Double pointTotal;
+	
+	private Boolean isParent=false;
+	
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Chore> chores;
+	
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Reward> rewards;
 	
 	// add List of chores and list of rewards tied to user?? \\ 
 	
 	public User() {}
 	
-	public User(String userName, String email, String password) {
+	public User(String userName, String password) {
 		this.userName = userName;
-		this.email = email;
 		this.password = password;
 		this.pointTotal = (double) 0;
+		this.isParent=false;
+
 	}
 	
 	// ***** DB TABLE VARIABLES *****
@@ -85,16 +91,6 @@ public class User {
 		this.id = id;
 	}
 
-
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -125,6 +121,30 @@ public class User {
 
 	public void setPointTotal(Double pointTotal) {
 		this.pointTotal = pointTotal;
+	}
+
+	public Boolean getIsParent() {
+		return isParent;
+	}
+
+	public void setIsParent(Boolean isParent) {
+		this.isParent = isParent;
+	}
+
+	public List<Chore> getChores() {
+		return chores;
+	}
+
+	public void setChores(List<Chore> chores) {
+		this.chores = chores;
+	}
+
+	public List<Reward> getRewards() {
+		return rewards;
+	}
+
+	public void setRewards(List<Reward> rewards) {
+		this.rewards = rewards;
 	}
 
 	public Date getCreatedAt() {

@@ -3,15 +3,16 @@ package com.project.chores.models;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
+
 public class Parent extends User{
 
+	private String email;
+	
 	private Boolean isParent;
 	  
 	// Maybe add "private Boolean isParent = true;" to creation 
@@ -19,9 +20,10 @@ public class Parent extends User{
 
 	public Parent() {}
 	
-	public Parent(String name, String email, String password) {
-		super(name, email, password);
-		this.isParent = true;
+	public Parent(String name, String password, String email) {
+		super(name, password);
+		this.email = email;
+		this.isParent = false;
 	}
 	
 	
@@ -51,6 +53,14 @@ public class Parent extends User{
 
 	public Boolean getIsParent() {
 		return isParent;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setIsParent(Boolean isParent) {
