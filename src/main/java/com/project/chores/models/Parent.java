@@ -18,12 +18,17 @@ public class Parent extends User{
 	@Email
 	private String email;
 	  
+	// Maybe add "private Boolean isParent = true;" to creation 
+	// or just see if email isPresent to give access.
+
 	public Parent() {}
 	
 	public Parent(String name, String password, String email) {
 		super(name, password);
 		this.email = email;
 	}
+	
+	
 	
 	// ***** DB TABLE VARIABLES *****
 	
