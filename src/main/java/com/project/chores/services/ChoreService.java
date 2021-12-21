@@ -15,7 +15,7 @@ public class ChoreService {
 	@Autowired
 	public ChoreRepository choreRepo;
 	
-		// Create \\
+		// *** Create *** \\
 	
 		// RETRIEVE \\
 	
@@ -31,8 +31,8 @@ public class ChoreService {
 			return null;
 	}
 
-		//  UPDATE  \\
+		//  UPDATE -future update \\
 	
-		//  DELETE  \\
+		//  DELETE -future update \\
 	
 }

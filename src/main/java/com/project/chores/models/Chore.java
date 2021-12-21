@@ -14,9 +14,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-/////////////////////////////////////////////////////////////
-//  Chore
-/////////////////////////////////////////////////////////////
 
 public class Chore {
 	
@@ -33,6 +30,7 @@ public class Chore {
 	private Double value;
 	
 	private Boolean completed;  // ManyToMany Relationship vs multiple OneToMany?
+	
 	
 	
 	public Chore() {}

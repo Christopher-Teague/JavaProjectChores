@@ -1,14 +1,7 @@
 package com.project.chores.controllers;
 
-///////////////////////////////////////////////////////
-//	CHORE CONTROLLER !Ninja Dog!
-///////////////////////////////////////////////////////
 
 public class ChoreController {
 
-	
-	
-	//  TEST!!! \\
-	
-	// Test2 \\
+
 }
