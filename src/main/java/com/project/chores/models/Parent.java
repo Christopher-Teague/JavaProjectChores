@@ -6,26 +6,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Parent extends User{
 
-	@NotEmpty
-	@Email
-	private String email;
+	private Boolean isParent;
 	  
 	// Maybe add "private Boolean isParent = true;" to creation 
 	// or just see if email isPresent to give access.
 
 	public Parent() {}
 	
-	public Parent(String name, String password, String email) {
-		super(name, password);
-		this.email = email;
+	public Parent(String name, String email, String password) {
+		super(name, email, password);
+		this.isParent = true;
 	}
 	
 	
@@ -52,12 +48,13 @@ public class Parent extends User{
 	
 	// SETTERS and GETTERS \\
 
-	public String getEmail() {
-		return email;
+
+	public Boolean getIsParent() {
+		return isParent;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setIsParent(Boolean isParent) {
+		this.isParent = isParent;
 	}
 
 	public Date getCreatedAt() {

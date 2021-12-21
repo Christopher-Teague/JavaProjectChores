@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,11 +26,16 @@ public class User {
 
 	@NotNull(message="Name is required!")
 	@Size(min=2, message="name must be at least 2 characters long")
-	private String name;   
+	private String userName;   
 
 	@NotNull(message="Password is required!")
 	@Size(min=2, message="password must be at least 2 characters long")
 	private String password;   
+	
+    @NotEmpty(message="Email is required!")
+    @Email(message="Please enter a valid email!")
+    private String email;
+   
 	
 	@Transient
     @NotEmpty(message="Confirm Password is required!")
@@ -42,8 +48,9 @@ public class User {
 	
 	public User() {}
 	
-	public User(String name, String password) {
-		this.name = name;
+	public User(String userName, String email, String password) {
+		this.userName = userName;
+		this.email = email;
 		this.password = password;
 		this.pointTotal = (double) 0;
 	}
@@ -78,12 +85,22 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
