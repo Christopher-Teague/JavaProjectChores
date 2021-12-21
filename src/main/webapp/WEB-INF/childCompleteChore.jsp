@@ -26,12 +26,12 @@
 				
 				</div>
 				<div class="d-flex  justify-content-end">
-			   		<a href="/childDashboard" class="btn btn-primary ">Dashboard</a>				
+			   		<a href="/dashboard" class="btn btn-primary ">Dashboard</a>				
 				</div>   		
 	   		</div>
-	   		<div>
+	   		<div class="mt-3">
 	   			<h3>Current Chores</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>
@@ -41,9 +41,9 @@
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+					  	<c:forEach var="chore" items="${currentChores}">			<!-- LOOP -->
 						<tr>
-		   					<td>${chore.name}</td>			    					  					
+		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
 		   					<td>Complete button</td>		    					  					
 					  	</tr>
@@ -52,9 +52,9 @@
 				</table> 
 	   		</div>
 
-	   		<div>
+	   		<div class="mt-3">
 	   			<h3>Rewards</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Reward</th>
@@ -66,7 +66,7 @@
 					<tbody>
 					  	<c:forEach var="reward" items="${currentRewards}">			<!-- LOOP -->
 						<tr>
-		   					<td>${reward.name}</td>			    					  					
+		   					<td>${reward.rewardName}</td>			    					  					
 		   					<td>${reward.value}</td>	
 		   					<td>redeem button</td>		    					  					
 					  	</tr>
@@ -74,9 +74,9 @@
 					</tbody>
 				</table> 
 	   		</div>
-	   		<div>
+	   		<div class="mt-3">
 	   			<h3>Redeemed Rewards</h3>
-		   		<table class="table table-primary table-striped mt-5">
+		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Reward</th>
@@ -87,7 +87,7 @@
 					<tbody>
 					  	<c:forEach var="reward" items="${redeemedRewards}">			<!-- LOOP -->
 						<tr>
-		   					<td>${reward.name}</td>			    					  					
+		   					<td>${reward.rewardName}</td>			    					  					
 		   					<td>${reward.cost}</td>	
 		   							    					  					
 					  	</tr>
