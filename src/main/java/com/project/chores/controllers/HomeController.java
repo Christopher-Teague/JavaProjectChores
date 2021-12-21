@@ -49,9 +49,16 @@ public class HomeController {
 	        model.addAttribute("newLogin", new LoginUser());
 	        return "createUser.jsp";
 	    } 
+	    if(!newUser.getIsParent()) {
 	    session.setAttribute("user_id", newUser.getId());
 	    session.setAttribute("userName", newUser.getUserName());
 	    return "redirect:/dashboard";
+	    }
+	    if(newUser.getIsParent()) {
+	    	session.setAttribute("user_id", newUser.getId());
+		    session.setAttribute("userName", newUser.getUserName());
+	    }
+		    return "redirect:/parentDashboard";
 	}
 	
 	@PostMapping("/login")
@@ -62,9 +69,15 @@ public class HomeController {
 	        model.addAttribute("newUser", new User());
 	        return "index.jsp";
 	    }
+	    if(user.getIsParent()) {
+	    session.setAttribute("user_id", user.getId());
+	    session.setAttribute("userName", user.getUserName());
+	    return "redirect:/parentDashboard";
+	    }
 	    session.setAttribute("user_id", user.getId());
 	    session.setAttribute("userName", user.getUserName());
 	    return "redirect:/dashboard";
+	    
 		}
 
 	@GetMapping("/dashboard")  //kids ******** need if check to get to parent dashboard
@@ -76,9 +89,20 @@ public class HomeController {
 		List<Reward> rewards = rewardService.allRewards();
 		model.addAttribute("chores", chores);
 		model.addAttribute("rewards", rewards);
-		
 		return "childDashboard.jsp";
 		}
+
+	@GetMapping("/parentDashboard") 
+	public String parentDashboard(HttpSession session, Model model) {
+		if(session.getAttribute("user_id") == null) {
+			return "redirect:/";
+		}
+		List<Chore> chores = choreService.allChores();
+		List<Reward> rewards = rewardService.allRewards();
+		model.addAttribute("chores", chores);
+		model.addAttribute("rewards", rewards);
+		return "parentDashboard.jsp";
+	}
 
 	@GetMapping("/logout") 
 		public String logout(HttpSession session) {
