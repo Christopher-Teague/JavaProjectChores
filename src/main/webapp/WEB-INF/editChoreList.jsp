@@ -41,41 +41,90 @@
 					</tr>
 				</thead>
 				<tbody>
-				  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+				  	<c:forEach var="chore" items="${chores}">					<!-- LOOP -->
+					<c:if test="${chore.getAvailable() == false}">
 					<tr>
 	   					<td>${chore.choreName}</td>			    					  					
 	   					<td>${chore.value}</td>	
-	   					<td>Delete Button</td>	    					  					
+	   					<td>
+	   						<form action="/choreList/remove" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectChore"  value="${chore.id}"/>																				        	
+	        					<input type="submit" value="Remove" class="btn btn-primary btn-sm " />
+	       					</form>																<!-- *************** -->
+    					</td>	    					  					
 				  	</tr>
-					</c:forEach>								<!-- END LOOP -->
+	         		
+				  	</c:if>   
+					</c:forEach>											<!-- END LOOP -->
 				</tbody>
 			</table> 
-			Drop Down to add chores
+			
+			<div class="form-group">   											<!-- DROP DOWN TO ADD CHORES -->
+            	<form action="/choreList/add" method="post" >
+	            <input type="hidden" name="_method" value="put"/>	
+		        <div class="form-group">
+	         		<label>Add Chore to list:</label>
+	            	<select name="selectChore" class="form-control">
+		         		<c:forEach var="chore" items="${chores}">
+	 						<c:if test="${chore.getAvailable() == true}">
+								<option value="${chore.id}">${chore.choreName} - ${chore.value} points</option>
+	 						</c:if>           	
+	        			</c:forEach>
+					</select>        	
+	        	</div>
+	        		<input type="submit" value="Add" class="btn btn-primary mt-2" />     	
+    			</form>
+        	</div>																<!-- ************************ -->
    		</div>
-		<div class="mt-3">	   		
+		<div class="mt-5">	   		
    			<h3>Edit Current Rewards List</h3>
 	   		<table class="table table-primary table-striped">
 				<thead>
 				    <tr>				      
 				      <th class="col-4">Reward</th>
 				      <th class="col-1">Cost</th>
-				      <th class="col-3"></th>
+				      <th class="col-1"></th>
 				    
 				     
 					</tr>
 				</thead>
 				<tbody>
-				  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
+				  	<c:forEach var="reward" items="${rewards}">							<!-- LOOP -->
+				  	<c:if test="${reward.getAvailable() == false}">			
 					<tr>
 	   					<td>${reward.rewardName}</td>			    					  					
 	   					<td>${reward.cost}</td>	
-	   					<td>delete button</td>	
+	   					<td>
+	   						<form action="/rewardList/remove" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectReward"  value="${reward.id}"/>																				        	
+	        					<input type="submit" value="Remove" class="btn btn-primary btn-sm " />
+	       					</form>																<!-- *************** -->
+	   					</td>	
 	   					    					  					
 				  	</tr>
-					</c:forEach>								<!-- END LOOP -->
+				  	</c:if>
+					</c:forEach>														<!-- END LOOP -->
 				</tbody>
 			</table> 
-   			Drop Down to add rewards
+   			
+				<div class="form-group">   											<!-- DROP DOWN TO ADD CHORES -->
+            		<form action="/rewardList/add" method="post" >
+	            	<input type="hidden" name="_method" value="put"/>	
+		        	<div class="form-group">
+	         		<label>Add Reward to list:</label>
+	            	<select name="selectReward" class="form-control">
+		         		<c:forEach var="reward" items="${rewards}">
+	 						<c:if test="${reward.getAvailable() == true}">
+								<option value="${reward.id}">${reward.rewardName} - costs ${reward.cost} points</option>
+	 						</c:if>           	
+	        			</c:forEach>
+					</select>        	
+	        		</div>
+	        		<input type="submit" value="Add" class="btn btn-primary mt-2" />     	
+    				</form>
+        		</div>											
    		</div>
 	
 	</div>
