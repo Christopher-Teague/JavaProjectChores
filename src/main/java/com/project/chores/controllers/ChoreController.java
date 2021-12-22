@@ -87,7 +87,7 @@ public class ChoreController {
 	@PutMapping("/choreList/add")
 	public String choreListAdd(@RequestParam ("selectChore")Long id, Model model) {
 		Chore chore = choreService.oneChore(id);
-		chore.setAvailable(false);
+		chore.setListed(true);
 		choreService.updateChore(chore);
 		return "redirect:/edit/choreList";
 	}
@@ -95,7 +95,7 @@ public class ChoreController {
 	@PutMapping("/choreList/remove")
 	public String choreListRemove(@RequestParam ("selectChore")Long id, Model model) {
 		Chore chore = choreService.oneChore(id);
-		chore.setAvailable(true);
+		chore.setListed(false);
 		choreService.updateChore(chore);
 		return "redirect:/edit/choreList";
 	}
@@ -103,7 +103,7 @@ public class ChoreController {
 	@PutMapping("/rewardList/add")
 	public String rewardListAdd(@RequestParam ("selectReward")Long id, Model model) {
 		Reward reward = rewardService.oneReward(id);
-		reward.setAvailable(false);
+		reward.setListed(true);
 		rewardService.updateReward(reward);
 		return "redirect:/edit/choreList";
 	}
@@ -111,7 +111,7 @@ public class ChoreController {
 	@PutMapping("/rewardList/remove")
 	public String rewardListRemove(@RequestParam ("selectReward")Long id, Model model) {
 		Reward reward = rewardService.oneReward(id);
-		reward.setAvailable(true);
+		reward.setListed(false);
 		rewardService.updateReward(reward);
 		return "redirect:/edit/choreList";
 	}
@@ -132,4 +132,19 @@ public class ChoreController {
 		return "childCompleteChore.jsp";
 	}
 	
+	@PutMapping("/childChore/add")
+	public String childChoreAdd(HttpSession session, @RequestParam ("selectChore")Long id ) {
+		Chore chore = choreService.oneChore(id);
+		Long userId = (Long) session.getAttribute("user_id");
+		System.out.println("***********");
+		System.out.println(session.getAttribute("user_id"));
+		System.out.println(userId);
+	
+		System.out.println("***********");
+		User user = userserv.findOne(userId);
+		chore.setUser(user);
+		chore.setWorking(true);
+		choreService.updateChore(chore);
+		return "redirect:/dashboard";
+	}
 }		

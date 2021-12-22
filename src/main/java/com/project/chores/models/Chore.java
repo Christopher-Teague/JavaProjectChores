@@ -33,11 +33,12 @@ public class Chore {
 	@Min(value=1)
 	private Integer value;
 	
+	private Boolean working;
 	
 	private Boolean completed; 
 	
 	
-	private Boolean available;
+	private Boolean listed;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -48,8 +49,9 @@ public class Chore {
 	public Chore(String choreName, Integer value) {
 		this.choreName=choreName;
 		this.value=value;
+		this.working=false;
 		this.completed=false;
-		this.available=true;
+		this.listed=false;
 	}
 	
 	
@@ -99,6 +101,15 @@ public class Chore {
 		this.value = value;
 	}
 		
+	
+	public Boolean getWorking() {
+		return working;
+	}
+
+	public void setWorking(Boolean working) {
+		this.working = working;
+	}
+
 	public Boolean getCompleted() {
 		return completed;
 	}
@@ -107,12 +118,12 @@ public class Chore {
 		this.completed = completed;
 	}
 
-	public Boolean getAvailable() {
-		return available;
+	public Boolean getListed() {
+		return listed;
 	}
 
-	public void setAvailable(Boolean available) {
-		this.available = available;
+	public void setListed(Boolean listed) {
+		this.listed = listed;
 	}
 
 	public User getUser() {

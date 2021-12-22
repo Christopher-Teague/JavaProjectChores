@@ -27,8 +27,8 @@
 				
 				</div>
 				<div class="d-flex  justify-content-end">
-			   		<a href="/chore/complete" class="btn btn-primary ">Redeem Points</a>				
-			   		<a href="/logout" class="btn btn-secondary me-3">Logout</a>
+			   		<a href="/chore/complete" class="btn btn-primary me-3 h-50">Redeem Points</a>				
+			   		<a href="/logout" class="btn btn-secondary me-3 h-50">Logout</a>
 				</div>   		
 	   		</div>
 	   		<div class="mt-3">
@@ -38,18 +38,24 @@
 					    <tr>				      
 					      <th class="col-4">Chore</th>
 					      <th class="col-1">Value</th>
-					      <th class="col-3"></th>   
+					      <th class="col-1"></th>   
 					     
 						</tr>
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
-						<c:if test="${chore.available == true}">
+						<c:if test="${chore.listed == true && !chore.working}">
 						<tr>
 							
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
-		   					<td>action</td>		    					  					
+		   					<td>
+								<form action="/childChore/add" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectChore"  value="${chore.id}"/>																				        		          																			        	
+	        					<input type="submit" value="Accept" class="btn btn-primary btn-sm " />
+	       						</form>		
+							</td>		    					  					
 					  	</tr>
 						</c:if>
 						</c:forEach>								<!-- END LOOP -->
@@ -67,12 +73,14 @@
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="chore" items="${currentChores}">			<!-- LOOP -->
+					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+						<c:if test="${chore.working == true }">
 						<tr>
-		   					<td>${chore.name}</td>			    					  					
-		   					<td>${chore.user.name}</td>	
+		   					<td>${chore.choreName}</td>			    					  					
+		   					<td>${chore.user.userName}</td>	
 		   							    					  					
 					  	</tr>
+					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 

@@ -52,7 +52,6 @@ public class HomeController {
 	    if(!newUser.getIsParent()) {
 	    session.setAttribute("user_id", newUser.getId());
 	    session.setAttribute("userName", newUser.getUserName());
-//	    newUser.setPointTotal(0);
 	    return "redirect:/dashboard";
 	    }
 	    if(newUser.getIsParent()) {
@@ -77,6 +76,8 @@ public class HomeController {
 	    }
 	    session.setAttribute("user_id", user.getId());
 	    session.setAttribute("userName", user.getUserName());
+	    session.setAttribute("pointTotal", user.getPointTotal());
+	    System.out.println(session.getAttribute("user_id"));
 	    return "redirect:/dashboard";
 	    
 		}

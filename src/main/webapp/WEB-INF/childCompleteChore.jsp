@@ -26,7 +26,7 @@
 				
 				</div>
 				<div class="d-flex  justify-content-end">
-			   		<a href="/dashboard" class="btn btn-primary ">Dashboard</a>				
+			   		<a href="/dashboard" class="btn btn-primary h-50">Dashboard</a>				
 				</div>   		
 	   		</div>
 	   		<div class="mt-3">
@@ -36,7 +36,7 @@
 					    <tr>				      
 					      <th class="col-4">Chore</th>
 					      <th class="col-1">Value</th>
-					      <th class="col-3"></th>   
+					      <th class="col-2"></th>   
 					     
 						</tr>
 					</thead>
@@ -59,17 +59,19 @@
 					    <tr>				      
 					      <th class="col-4">Reward</th>
 					      <th class="col-1">Cost</th>   
-					      <th class="col-3"></th>
+					      <th class="col-2">Claim</th>
 					     
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="reward" items="${currentRewards}">			<!-- LOOP -->
+					  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
+						<c:if test="${reward.listed == true}">
 						<tr>
 		   					<td>${reward.rewardName}</td>			    					  					
-		   					<td>${reward.value}</td>	
+		   					<td>${reward.cost}</td>	
 		   					<td>redeem button</td>		    					  					
 					  	</tr>
+					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 

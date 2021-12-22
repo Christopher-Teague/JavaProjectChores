@@ -23,13 +23,14 @@ public class ChoreService {
 		// *** Create *** \\
 	
 	public Chore addChore(Chore chore) {
-		chore.setAvailable(true);
+		chore.setListed(false);
 		chore.setCompleted(false);
+		chore.setWorking(false);
 		return choreRepo.save(chore);
 	}	
 
 	public Reward addReward(Reward reward) {
-		reward.setAvailable(true);
+		reward.setListed(false);
 		reward.setRedeemed(false);		
 		return rewardRepo.save(reward);
 		
@@ -67,6 +68,8 @@ public class ChoreService {
 	public Chore updateChore(Chore chore) {
 		return choreRepo.save(chore);
 	}
+	
+	
 	
 		//  DELETE -future update \\
 	

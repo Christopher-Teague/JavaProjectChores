@@ -35,7 +35,7 @@ public class Reward {
 	
 	private Boolean redeemed;  // ManyToMany Relationship vs multiple OneToMany?
 
-	private Boolean available;  // ManyToMany Relationship vs multiple OneToMany?
+	private Boolean listed;  // ManyToMany Relationship vs multiple OneToMany?
 		
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -104,12 +104,12 @@ public class Reward {
 		this.redeemed = redeemed;
 	}
 
-	public Boolean getAvailable() {
-		return available;
+	public Boolean getListed() {
+		return listed;
 	}
 
-	public void setAvailable(Boolean available) {
-		this.available = available;
+	public void setListed(Boolean listed) {
+		this.listed = listed;
 	}
 
 	public User getUser() {

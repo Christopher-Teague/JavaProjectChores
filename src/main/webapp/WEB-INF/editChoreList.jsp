@@ -32,26 +32,26 @@
    			<h3>Edit Current Chore List</h3>
 	   		<table class="table table-primary table-striped">
 				<thead>
-				    <tr>				      
-				      <th class="col-4">Chore</th>
-				      <th class="col-1">Value</th>
-				      <th class="col-1"></th>
 				    
-				     
+				    <tr>				      
+				    	<th class="col-4">Chore</th>
+				      	<th class="col-1">Value</th>
+				      	<th class="col-1"></th>    				     
 					</tr>
+					
 				</thead>
 				<tbody>
 				  	<c:forEach var="chore" items="${chores}">					<!-- LOOP -->
-					<c:if test="${chore.getAvailable() == false}">
+					<c:if test="${chore.getListed() == true && !chore.working}">
 					<tr>
 	   					<td>${chore.choreName}</td>			    					  					
 	   					<td>${chore.value}</td>	
 	   					<td>
-	   						<form action="/choreList/remove" method="post" >                 	<!-- "REMOVE" BUTTON -->
+	   						<form action="/choreList/remove" method="post" >       	<!-- "REMOVE" BUTTON -->
 			            		<input type="hidden" name="_method" value="put"/>	
 	            	    		<input type="hidden" name="selectChore"  value="${chore.id}"/>																				        	
 	        					<input type="submit" value="Remove" class="btn btn-primary btn-sm " />
-	       					</form>																<!-- *************** -->
+	       					</form>													<!-- *************** -->
     					</td>	    					  					
 				  	</tr>
 	         		
@@ -60,14 +60,14 @@
 				</tbody>
 			</table> 
 			
-			<div class="form-group">   											<!-- DROP DOWN TO ADD CHORES -->
+			<div class="form-group">   									<!-- DROP DOWN TO ADD CHORES -->
             	<form action="/choreList/add" method="post" >
 	            <input type="hidden" name="_method" value="put"/>	
 		        <div class="form-group">
 	         		<label>Add Chore to list:</label>
 	            	<select name="selectChore" class="form-control">
 		         		<c:forEach var="chore" items="${chores}">
-	 						<c:if test="${chore.getAvailable() == true}">
+	 						<c:if test="${chore.getListed() == false}">
 								<option value="${chore.id}">${chore.choreName} - ${chore.value} points</option>
 	 						</c:if>           	
 	        			</c:forEach>
@@ -75,7 +75,7 @@
 	        	</div>
 	        		<input type="submit" value="Add" class="btn btn-primary mt-2" />     	
     			</form>
-        	</div>																<!-- ************************ -->
+        	</div>														<!-- ************************ -->
    		</div>
 		<div class="mt-5">	   		
    			<h3>Edit Current Rewards List</h3>
@@ -91,7 +91,7 @@
 				</thead>
 				<tbody>
 				  	<c:forEach var="reward" items="${rewards}">							<!-- LOOP -->
-				  	<c:if test="${reward.getAvailable() == false}">			
+				  	<c:if test="${reward.getListed() == true}">			
 					<tr>
 	   					<td>${reward.rewardName}</td>			    					  					
 	   					<td>${reward.cost}</td>	
@@ -116,7 +116,7 @@
 	         		<label>Add Reward to list:</label>
 	            	<select name="selectReward" class="form-control">
 		         		<c:forEach var="reward" items="${rewards}">
-	 						<c:if test="${reward.getAvailable() == true}">
+	 						<c:if test="${reward.getListed() == false}">
 								<option value="${reward.id}">${reward.rewardName} - costs ${reward.cost} points</option>
 	 						</c:if>           	
 	        			</c:forEach>
