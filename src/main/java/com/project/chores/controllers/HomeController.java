@@ -52,6 +52,7 @@ public class HomeController {
 	    if(!newUser.getIsParent()) {
 	    session.setAttribute("user_id", newUser.getId());
 	    session.setAttribute("userName", newUser.getUserName());
+//	    newUser.setPointTotal(0);
 	    return "redirect:/dashboard";
 	    }
 	    if(newUser.getIsParent()) {
@@ -80,7 +81,8 @@ public class HomeController {
 	    
 		}
 
-	@GetMapping("/dashboard")  //kids ******** need if check to get to parent dashboard
+	 //   CHILDRENS DASHBOARD   \\
+	@GetMapping("/dashboard")	
 	public String dashboard(HttpSession session, Model model) {
 		if(session.getAttribute("user_id") == null) {
 			return "redirect:/";

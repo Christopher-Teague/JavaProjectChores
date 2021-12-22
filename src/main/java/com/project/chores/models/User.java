@@ -39,7 +39,7 @@ public class User {
 	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
 	private String confirm;
   
-	private Double pointTotal;
+	private int pointTotal;
 	
 	private Boolean isParent=false;
 	
@@ -56,7 +56,7 @@ public class User {
 	public User(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
-		this.pointTotal = (double) 0;
+		this.pointTotal = 0;   //controller
 		this.isParent=false;
 
 	}
@@ -115,11 +115,11 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public Double getPointTotal() {
+	public int getPointTotal() {
 		return pointTotal;
 	}
 
-	public void setPointTotal(Double pointTotal) {
+	public void setPointTotal(int pointTotal) {
 		this.pointTotal = pointTotal;
 	}
 

@@ -31,7 +31,7 @@ public class Reward {
 
 	@NotNull(message="Cost must be at least 1")
 	@Min(value=1)
-	private Double cost;
+	private Integer cost;
 	
 	private Boolean redeemed;  // ManyToMany Relationship vs multiple OneToMany?
 		
@@ -41,7 +41,7 @@ public class Reward {
 	
 	public Reward() {}
 	
-	public Reward(String rewardName, Double cost) {
+	public Reward(String rewardName, Integer cost) {
 		this.rewardName = rewardName;
 		this.cost = cost;
 		this.redeemed = false;
@@ -86,11 +86,11 @@ public class Reward {
 		this.rewardName = rewardName;
 	}
 
-	public Double getCost() {
+	public Integer getCost() {
 		return cost;
 	}
 
-	public void setCost(Double cost) {
+	public void setCost(Integer cost) {
 		this.cost = cost;
 	}
 	
