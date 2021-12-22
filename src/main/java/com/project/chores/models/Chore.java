@@ -31,9 +31,13 @@ public class Chore {
 
 	@NotNull(message="Value must be at least 1")
 	@Min(value=1)
-	private Double value;
+	private Integer value;
 	
-	private Boolean completed;  // ManyToMany Relationship vs multiple OneToMany?
+	
+	private Boolean completed; 
+	
+	
+	private Boolean available;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -41,10 +45,11 @@ public class Chore {
 	
 	public Chore() {}
 	
-	public Chore(String choreName, Double value) {
+	public Chore(String choreName, Integer value) {
 		this.choreName=choreName;
 		this.value=value;
 		this.completed=false;
+		this.available=true;
 	}
 	
 	
@@ -86,11 +91,11 @@ public class Chore {
 		this.choreName = choreName;
 	}
 
-	public Double getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
-	public void setValue(Double value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 		
@@ -100,6 +105,14 @@ public class Chore {
 
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
+	}
+
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
 	}
 
 	public User getUser() {

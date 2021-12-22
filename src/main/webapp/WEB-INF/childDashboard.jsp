@@ -44,11 +44,14 @@
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+						<c:if test="${chore.available == true}">
 						<tr>
+							
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
 		   					<td>action</td>		    					  					
 					  	</tr>
+						</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 

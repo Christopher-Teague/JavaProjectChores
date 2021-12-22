@@ -23,6 +23,8 @@ public class ChoreService {
 		// *** Create *** \\
 	
 	public Chore addChore(Chore chore) {
+		chore.setAvailable(true);
+		chore.setCompleted(false);
 		return choreRepo.save(chore);
 	}	
 

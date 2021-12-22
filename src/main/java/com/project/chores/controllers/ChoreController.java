@@ -61,6 +61,7 @@ public class ChoreController {
 		if(result.hasErrors()) {
 			return "createChore.jsp";			
 		}
+		newReward.setRedeemed(false);
 		choreService.addReward(newReward);
 		return "redirect:/edit/choreList";
 	}
