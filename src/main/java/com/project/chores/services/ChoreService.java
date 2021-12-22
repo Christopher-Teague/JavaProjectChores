@@ -29,6 +29,8 @@ public class ChoreService {
 	}	
 
 	public Reward addReward(Reward reward) {
+		reward.setAvailable(true);
+		reward.setRedeemed(false);		
 		return rewardRepo.save(reward);
 		
 		
@@ -61,6 +63,10 @@ public class ChoreService {
 	}
 
 		//  UPDATE -future update \\
+	
+	public Chore updateChore(Chore chore) {
+		return choreRepo.save(chore);
+	}
 	
 		//  DELETE -future update \\
 	

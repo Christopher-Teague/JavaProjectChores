@@ -12,11 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.chores.models.Chore;
 import com.project.chores.models.Reward;
 import com.project.chores.models.User;
 import com.project.chores.services.ChoreService;
+import com.project.chores.services.RewardService;
 import com.project.chores.services.UserService;
 
 @Controller
@@ -27,6 +30,9 @@ public class ChoreController {
 	
 	@Autowired
 	ChoreService choreService;
+	
+	@Autowired
+	RewardService rewardService;
 	
 	//     Parent Mapping     \\
 
@@ -77,6 +83,40 @@ public class ChoreController {
 		model.addAttribute("rewards", rewards);
 		return "editChoreList.jsp";
 	}
+	
+	@PutMapping("/choreList/add")
+	public String choreListAdd(@RequestParam ("selectChore")Long id, Model model) {
+		Chore chore = choreService.oneChore(id);
+		chore.setAvailable(false);
+		choreService.updateChore(chore);
+		return "redirect:/edit/choreList";
+	}
+
+	@PutMapping("/choreList/remove")
+	public String choreListRemove(@RequestParam ("selectChore")Long id, Model model) {
+		Chore chore = choreService.oneChore(id);
+		chore.setAvailable(true);
+		choreService.updateChore(chore);
+		return "redirect:/edit/choreList";
+	}
+	
+	@PutMapping("/rewardList/add")
+	public String rewardListAdd(@RequestParam ("selectReward")Long id, Model model) {
+		Reward reward = rewardService.oneReward(id);
+		reward.setAvailable(false);
+		rewardService.updateReward(reward);
+		return "redirect:/edit/choreList";
+	}
+	
+	@PutMapping("/rewardList/remove")
+	public String rewardListRemove(@RequestParam ("selectReward")Long id, Model model) {
+		Reward reward = rewardService.oneReward(id);
+		reward.setAvailable(true);
+		rewardService.updateReward(reward);
+		return "redirect:/edit/choreList";
+	}
+	
+	
 	
 	//     Child Mapping     \\
 	

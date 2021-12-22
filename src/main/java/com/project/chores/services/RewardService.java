@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.chores.models.Chore;
 import com.project.chores.models.Reward;
 import com.project.chores.repositories.RewardRepository;
 
@@ -32,6 +33,10 @@ public class RewardService {
 	}
 	
 		//  UPDATE  \\
+	
+	public Reward updateReward(Reward reward) {
+		return rewardRepo.save(reward);
+	}
 	
 		//  DELETE  \\
 		
