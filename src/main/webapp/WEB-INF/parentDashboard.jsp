@@ -28,7 +28,7 @@
 			   						
 				</div>
 				<div class="d-flex  justify-content-end">			
-			   		<a href="/logout" class="btn btn-secondary me-3">Logout</a>
+			   		<a href="/logout" class="btn btn-secondary h-50 me-3">Logout</a>
 				</div>   		
 	   		</div>
 	   		<div class="mt-3">
@@ -39,7 +39,7 @@
 					      <th class="col-4">Reward</th>
 					      <th class="col-3">Points</th>   
 					      <th class="col-3">Redeemed by</th>   
-					      <th class="col-3">Pay Up</th>   
+					      <th class="col-1">Pay Up</th>   
 					     
 						</tr>
 					</thead>
@@ -60,15 +60,16 @@
 		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
-					      <th class="col-4">Chore</th>
-					      <th class="col-3">By Who</th>   
+					      <th class="col-3">Chore</th>
+					      <th class="col-2">By Who</th>   
 					      <th class="col-1">Value</th>   
-					      <th class="" colspan="2">Actions</th>   
+					      <th class="col-1">x</th>   
 					     
 						</tr>
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${currentChores}">			<!-- LOOP -->
+						<c:if test="${chore.getCompleted() == true}">
 						<tr>
 		   					<td>${chore.name}</td>			    					  					
 		   					<td>${chore.user.name}</td>	
@@ -76,28 +77,33 @@
 		   					<td>Relist + Remove buttons</td>	
 		   							    					  					
 					  	</tr>
+					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 
 	   		</div>
 	   		<div>	   		
-	   			<h3>Chores to be done</h3>
+	   			<h3>Chores being worked on</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
 					      <th class="col-4">Chore</th>
 					      <th class="col-1">Value</th>
+					      <th class="col-2">Who is doing it</th>
 					    
 					     
 						</tr>
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+						<c:if test="${chore.working}">
 						<tr>
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
+		   					<td>${chore.user.userName}</td>
 		   					    					  					
 					  	</tr>
+					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 
