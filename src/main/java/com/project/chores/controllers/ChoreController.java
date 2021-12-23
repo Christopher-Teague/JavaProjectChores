@@ -128,7 +128,7 @@ public class ChoreController {
 		List<Chore> chores = choreService.allChores();
 		List<Reward> rewards = choreService.allRewards();
 		model.addAttribute("chores", chores);
-		model.addAttribute("rewards", rewards);
+		model.addAttribute("rewards", rewards);		
 		return "childCompleteChore.jsp";
 	}
 	

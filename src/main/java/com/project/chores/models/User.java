@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -123,14 +122,6 @@ public class User {
 		return pointTotal;
 	}
 	
-//	public int getPointTotal() {
-//		return pointTotal;
-//	}
-//
-//	public void setPointTotal(int pointTotal) {
-//		this.pointTotal = pointTotal;
-//	}
-
 
 	public Boolean getIsParent() {
 		return isParent;

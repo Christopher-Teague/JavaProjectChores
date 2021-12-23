@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Chore Page</title>
+    <title>${userName}</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/jquery/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 			   		<a href="/logout" class="btn btn-secondary me-3 h-50">Logout</a>
 				</div>   		
 	   		</div>
-	   		<div class="mt-3">
+	   		<div class="mt-3 p-3">
 	   			<h3>Available Chores</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
@@ -62,7 +62,7 @@
 					</tbody>
 				</table> 
 	   		</div>
-	   		<div>
+	   		<div class="p-3">
 	   			<h3>Chores being done</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
