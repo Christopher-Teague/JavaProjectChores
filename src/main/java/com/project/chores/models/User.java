@@ -35,11 +35,11 @@ public class User {
 	private String password;   
 	
 	@Transient
-	@NotEmpty(message="Confirm Password is required!")
-	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+//	@NotEmpty(message="Confirm Password is required!")
+	@Size(min=2, max=128, message="Confirm Password must be between 2 and 128 characters")
 	private String confirm;
   
-	private int pointTotal;
+	private Integer pointTotal;
 	
 	private Boolean isParent=false;
 	
@@ -64,10 +64,10 @@ public class User {
 	// ***** DB TABLE VARIABLES *****
 	
 	@Column(updatable=false)
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 	
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 	
 	
@@ -115,13 +115,22 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public int getPointTotal() {
-		return pointTotal;
-	}
-
-	public void setPointTotal(int pointTotal) {
+	public void setPointTotal(Integer pointTotal) {
 		this.pointTotal = pointTotal;
 	}
+
+	public Integer getPointTotal() {
+		return pointTotal;
+	}
+	
+//	public int getPointTotal() {
+//		return pointTotal;
+//	}
+//
+//	public void setPointTotal(int pointTotal) {
+//		this.pointTotal = pointTotal;
+//	}
+
 
 	public Boolean getIsParent() {
 		return isParent;

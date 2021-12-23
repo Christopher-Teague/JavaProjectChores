@@ -74,7 +74,7 @@
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
-						<c:if test="${chore.working == true }">
+						<c:if test="${chore.working && !chore.completed }">
 						<tr>
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.user.userName}</td>	

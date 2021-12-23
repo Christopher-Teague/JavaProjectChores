@@ -29,7 +29,8 @@
 			</div>   		
    		</div>
    			
-		<div>
+		<div class="mt-4 p-3">
+			<h3>Create a new Chore</h3>
 			<form:form class="form-control" action="/chore/new" method="post" modelAttribute="newChore">       	  		
 		
 		  		<form:input type="hidden" value="${user_id}" path="user"/>		  		
@@ -46,7 +47,8 @@
 			  
         	</form:form>
 		</div>
-		<div>
+		<div class="mt-4 p-3">
+			<h3>Create a new Reward</h3>
 			<form:form class="form-control" action="/reward/new" method="post" modelAttribute="newReward">       	  		
 		
 		  		<form:input type="hidden" value="${user_id}" path="user"/>		  		
