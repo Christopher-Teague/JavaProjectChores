@@ -29,7 +29,7 @@
 			   		<a href="/dashboard" class="btn btn-primary h-50">Dashboard</a>				
 				</div>   		
 	   		</div>
-	   		<div class="mt-3">
+	   		<div class="mt-3 p-3">
 	   			<h3>Current Chores</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
@@ -62,7 +62,7 @@
 				</table> 
 	   		</div>
 
-	   		<div class="mt-3">
+	   		<div class="mt-3 p-3">
 	   			<h3>Rewards</h3>
 	   			
 		   		<table class="table table-primary table-striped">
@@ -96,7 +96,7 @@
 					</tbody>
 				</table> 
 	   		</div>
-	   		<div class="mt-3">
+	   		<div class="mt-3 p-3">
 	   			<h3>Redeemed Rewards</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
