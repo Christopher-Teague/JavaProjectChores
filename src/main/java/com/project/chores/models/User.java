@@ -38,7 +38,7 @@ public class User {
 	@Size(min=2, max=128, message="Confirm Password must be between 2 and 128 characters")
 	private String confirm;
   
-	private Integer pointTotal;
+	private int pointTotal;
 	
 	private Boolean isParent=false;
 	
@@ -114,11 +114,11 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public void setPointTotal(Integer pointTotal) {
+	public void setPointTotal(int pointTotal) {
 		this.pointTotal = pointTotal;
 	}
 
-	public Integer getPointTotal() {
+	public int getPointTotal() {
 		return pointTotal;
 	}
 	
