@@ -52,6 +52,8 @@ public class HomeController {
 	    if(!newUser.getIsParent()) {
 	    session.setAttribute("user_id", newUser.getId());
 	    session.setAttribute("userName", newUser.getUserName());
+	    newUser.setPointTotal(0);
+	    session.setAttribute("pointTotal", newUser.getPointTotal());
 	    return "redirect:/dashboard";
 	    }
 	    if(newUser.getIsParent()) {
