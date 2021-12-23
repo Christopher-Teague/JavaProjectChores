@@ -23,15 +23,24 @@
 		<div class="d-flex">
 				<div class="flex-grow-1">
 			   		<h1>Parent Dashboard</h1>
-			   		<h5>child point total</h5>
-			   		<h5>child point total</h5>
+			   		<table>
+			   			<tbody>
+			   			<c:forEach var="user" items="${users}">
+			   			<c:if test="${!user.isParent }">
+			   			<tr>
+			   				<td><h5>${user.userName} has ${user.pointTotal} points</h5></td>
+			   			</tr>
+			   			</c:if>
+			   			</c:forEach>
+			   			</tbody>
+			   		</table>
 			   						
 				</div>
 				<div class="d-flex  justify-content-end">			
 			   		<a href="/logout" class="btn btn-secondary h-50 me-3">Logout</a>
 				</div>   		
 	   		</div>
-	   		<div class="mt-3">
+	   		<div class="mt-3 p-2">
 	   			<h3>Redeemed Rewards</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
@@ -44,18 +53,27 @@
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="reward" items="${redeemedRewards}">			<!-- LOOP -->
+					  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
+						<c:if test="${reward.redeemed }">
+						
 						<tr>
-		   					<td>${reward.name}</td>			    					  					
+		   					<td>${reward.rewardName}</td>			    					  					
 		   					<td>${reward.cost}</td>	
-		   					<td>${reward.user.name}</td>	
-		   					<td>button</td>			   							    					  					
+		   					<td>${reward.user.userName}</td>	
+		   					<td>
+								<form action="/reward/reset" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectReward"  value="${reward.id}"/>																				        		          																			        	
+	        					<input type="submit" value="Pay Up!" class="btn btn-primary btn-sm " />
+	       						</form>	
+							</td>			   							    					  					
 					  	</tr>
+						</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 
 	   		</div>
-	   		<div>
+	   		<div class="p-2">
 	   			<h3>Completed Chores</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
@@ -63,18 +81,24 @@
 					      <th class="col-3">Chore</th>
 					      <th class="col-2">By Who</th>   
 					      <th class="col-1">Value</th>   
-					      <th class="col-1">x</th>   
+					      <th class="col-1">Verified?</th>   
 					     
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="chore" items="${currentChores}">			<!-- LOOP -->
-						<c:if test="${chore.getCompleted() == true}">
+					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+						<c:if test="${chore.completed}">
 						<tr>
-		   					<td>${chore.name}</td>			    					  					
-		   					<td>${chore.user.name}</td>	
+		   					<td>${chore.choreName}</td>			    					  					
+		   					<td>${chore.user.userName}</td>	
 		   					<td>${chore.value}</td>	
-		   					<td>Relist + Remove buttons</td>	
+		   					<td>
+								<form action="/chore/reset" method="post" >       	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectChore"  value="${chore.id}"/>																				        	
+	        					<input type="submit" value="Verify" class="btn btn-primary btn-sm " />
+	       					</form>	
+							</td>	
 		   							    					  					
 					  	</tr>
 					  	</c:if>
@@ -82,7 +106,7 @@
 					</tbody>
 				</table> 
 	   		</div>
-	   		<div>	   		
+	   		<div class="p-2">	   		
 	   			<h3>Chores being worked on</h3>
 		   		<table class="table table-primary table-striped">
 					<thead>
@@ -96,7 +120,7 @@
 					</thead>
 					<tbody>
 					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
-						<c:if test="${chore.working}">
+						<c:if test="${chore.working && !chore.completed}">
 						<tr>
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	

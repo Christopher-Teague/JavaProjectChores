@@ -100,8 +100,10 @@ public class HomeController {
 		if(session.getAttribute("user_id") == null) {
 			return "redirect:/";
 		}
+		List<User> users = userServ.allUsers();
 		List<Chore> chores = choreService.allChores();
 		List<Reward> rewards = rewardService.allRewards();
+		model.addAttribute("users", users);
 		model.addAttribute("chores", chores);
 		model.addAttribute("rewards", rewards);
 		return "parentDashboard.jsp";

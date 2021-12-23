@@ -26,7 +26,7 @@ import com.project.chores.services.UserService;
 public class ChoreController {
 	
 	@Autowired
-	UserService userserv;
+	UserService userServ;
 	
 	@Autowired
 	ChoreService choreService;
@@ -136,15 +136,63 @@ public class ChoreController {
 	public String childChoreAdd(HttpSession session, @RequestParam ("selectChore")Long id ) {
 		Chore chore = choreService.oneChore(id);
 		Long userId = (Long) session.getAttribute("user_id");
-		System.out.println("***********");
-		System.out.println(session.getAttribute("user_id"));
-		System.out.println(userId);
-	
-		System.out.println("***********");
-		User user = userserv.findOne(userId);
+		User user = userServ.findOne(userId);
 		chore.setUser(user);
 		chore.setWorking(true);
 		choreService.updateChore(chore);
 		return "redirect:/dashboard";
 	}
+	@PutMapping("/reward/claim")
+	public String rewardClaim(HttpSession session, @RequestParam ("selectReward")Long id ) {
+		Reward reward = rewardService.oneReward(id);
+		Long userId = (Long) session.getAttribute("user_id");
+		User user = userServ.findOne(userId);
+		Integer cost = reward.getCost();
+		Integer currPoints = user.getPointTotal();
+		Integer newTotal = currPoints - cost;
+		user.setPointTotal(newTotal);
+		userServ.updateUser(user);
+		reward.setUser(user);
+		reward.setRedeemed(true);
+		rewardService.updateReward(reward);
+		session.setAttribute("pointTotal", user.getPointTotal());
+		return "redirect:/chore/complete";
+	}
+
+	@PutMapping("/chore/markDone")
+	public String choreComplete(HttpSession session, @RequestParam ("selectChore")Long id ) {
+		Chore chore = choreService.oneChore(id);
+		Long userId = (Long) session.getAttribute("user_id");
+		User user = userServ.findOne(userId);
+		Integer value = chore.getValue();
+		Integer currPoints = user.getPointTotal();
+		Integer newTotal = value + currPoints;
+		user.setPointTotal(newTotal);
+		chore.setCompleted(true);
+		userServ.updateUser(user);
+		choreService.updateChore(chore);
+		session.setAttribute("pointTotal", user.getPointTotal());
+		return "redirect:/chore/complete";
+	}
+
+	@PutMapping("/chore/reset")
+	public String choreReset(HttpSession session, @RequestParam ("selectChore")Long id ) {
+		Chore chore = choreService.oneChore(id);
+		chore.setCompleted(false);
+		chore.setWorking(false);
+		chore.setListed(false);
+		choreService.updateChore(chore);
+		return "redirect:/parentDashboard";
+	}
+
+	@PutMapping("/reward/reset")
+	public String rewardReset(HttpSession session, @RequestParam ("selectReward")Long id ) {
+		Reward reward = rewardService.oneReward(id);
+		reward.setRedeemed(false);
+		reward.setListed(false);
+		rewardService.updateReward(reward);
+		return "redirect:/parentDashboard";
+	}
+	
+	
 }		

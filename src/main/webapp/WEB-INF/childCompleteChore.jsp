@@ -41,12 +41,22 @@
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="chore" items="${currentChores}">			<!-- LOOP -->
+					  	<c:forEach var="chore" items="${chores}">			<!-- LOOP -->
+						<c:if test="${chore.user.id == user_id && chore.working && !chore.completed}">
 						<tr>
 		   					<td>${chore.choreName}</td>			    					  					
 		   					<td>${chore.value}</td>	
-		   					<td>Complete button</td>		    					  					
+		   					<td>
+		   					
+								<form action="/chore/markDone" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectChore"  value="${chore.id}"/>																				        		          																			        	
+	        					<input type="submit" value="Mark as done" class="btn btn-primary btn-sm " />
+	       						</form>	
+		   									
+							</td>		    					  					
 					  	</tr>
+						</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 
@@ -54,6 +64,7 @@
 
 	   		<div class="mt-3">
 	   			<h3>Rewards</h3>
+	   			
 		   		<table class="table table-primary table-striped">
 					<thead>
 					    <tr>				      
@@ -65,11 +76,20 @@
 					</thead>
 					<tbody>
 					  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
-						<c:if test="${reward.listed == true}">
+						<c:if test="${reward.listed == true && !reward.redeemed}">
 						<tr>
 		   					<td>${reward.rewardName}</td>			    					  					
 		   					<td>${reward.cost}</td>	
-		   					<td>redeem button</td>		    					  					
+		   					<td>
+		   					
+		   					<c:if test="${reward.cost <= pointTotal }">
+		   						<form action="/reward/claim" method="post" >                 	<!-- "REMOVE" BUTTON -->
+			            		<input type="hidden" name="_method" value="put"/>	
+	            	    		<input type="hidden" name="selectReward"  value="${reward.id}"/>																				        		          																			        	
+	        					<input type="submit" value="Claim" class="btn btn-primary btn-sm " />
+	       						</form>
+	       					</c:if>		
+		   					</td>		    					  					
 					  	</tr>
 					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
@@ -87,12 +107,14 @@
 						</tr>
 					</thead>
 					<tbody>
-					  	<c:forEach var="reward" items="${redeemedRewards}">			<!-- LOOP -->
+					  	<c:forEach var="reward" items="${rewards}">			<!-- LOOP -->
+						<c:if test="${reward.redeemed}">
 						<tr>
 		   					<td>${reward.rewardName}</td>			    					  					
 		   					<td>${reward.cost}</td>	
 		   							    					  					
 					  	</tr>
+					  	</c:if>
 						</c:forEach>								<!-- END LOOP -->
 					</tbody>
 				</table> 
